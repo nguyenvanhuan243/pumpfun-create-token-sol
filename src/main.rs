@@ -13,14 +13,6 @@ use {
 
 declare_id!("MYPROGRAM_ID");
 
-// Define the event struct
-#[event]
-pub struct TokenMinted {
-    pub mint_address: Pubkey,
-    pub token_name: String,
-    pub token_symbol: String,
-}
-
 #[program]
 pub mod create_token {
     use super::*;
@@ -54,8 +46,8 @@ pub mod create_token {
                 },
             ),
             DataV2 {
-                name: token_name,
-                symbol: token_symbol,
+                name: token_name.clone(),
+                symbol: token_symbol.clone(),
                 uri: token_uri,
                 seller_fee_basis_points: 0,
                 creators: None,
@@ -107,4 +99,11 @@ pub struct CreateTokenMint<'info> {
     pub token_program: Program<'info, Token>,
     pub system_program: Program<'info, System>,
     pub rent: Sysvar<'info, Rent>,
+}
+
+#[event]
+pub struct TokenMinted {
+    pub mint_address: Pubkey,
+    pub token_name: String,
+    pub token_symbol: String,
 }
