@@ -13,6 +13,14 @@ use {
 
 declare_id!("MYPROGRAM_ID");
 
+// Define the event struct
+#[event]
+pub struct TokenMinted {
+    pub mint_address: Pubkey,
+    pub token_name: String,
+    pub token_symbol: String,
+}
+
 #[program]
 pub mod create_token {
     use super::*;
@@ -60,6 +68,13 @@ pub mod create_token {
         )?;
 
         msg!("Token mint created successfully.");
+
+        // Emit the event
+        emit!(TokenMinted {
+            mint_address: ctx.accounts.mint_account.key(),
+            token_name,
+            token_symbol,
+        });
 
         Ok(())
     }
