@@ -1,8 +1,3 @@
-// fn main() {
-//     println!("Hello, world!");
-// }
-
-
 #![allow(clippy::result_large_err)]
 
 use {
@@ -16,7 +11,7 @@ use {
     },
 };
 
-declare_id!("GwvQ53QTu1xz3XXYfG5m5jEqwhMBvVBudPS8TUuFYnhT");
+declare_id!("MYPROGRAM_ID");
 
 #[program]
 pub mod create_token {
